@@ -9,12 +9,10 @@ public class UnixClaimedPermissionState extends PermissionState {
 
     @Override
     public void grantedBy(SystemAdmin admin, SystemPermission systemPermission) {
-        if (!systemPermission.getState().equals(ClaimedPermissionState.CLAIMED) && !systemPermission.getState().equals(UnixClaimedPermissionState.UNIX_CLAIMED))
-            return;
         if (!systemPermission.admin.equals(admin))
             return;
 
-        if (systemPermission.profile.isUnixPermissionRequired() && systemPermission.getState().equals(UnixClaimedPermissionState.UNIX_CLAIMED))
+        if (systemPermission.profile.isUnixPermissionRequired())
             systemPermission.isUnixPermissionGranted = true;
         else if (systemPermission.profile.isUnixPermissionRequired() && !systemPermission.profile.isUnixPermissionGranted()) {
             systemPermission.setState(UnixRequestedPermissionState.UNIX_REQUESTED);
@@ -28,8 +26,6 @@ public class UnixClaimedPermissionState extends PermissionState {
 
     @Override
     public void deniedBy(SystemAdmin admin, SystemPermission systemPermission) {
-        if (!systemPermission.getState().equals(ClaimedPermissionState.CLAIMED) && !systemPermission.getState().equals(UnixClaimedPermissionState.UNIX_CLAIMED))
-            return;
         if (!systemPermission.admin.equals(admin))
             return;
         systemPermission.granted = false;
