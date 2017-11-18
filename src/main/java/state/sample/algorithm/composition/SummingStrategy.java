@@ -1,18 +1,16 @@
-package state.algorithm.composition;
+package state.sample.algorithm.composition;
 
 
-import state.algorithm.Measurement;
+import state.sample.algorithm.Measurement;
+import state.sample.algorithm.MeasurementUtil;
 
 import java.util.Collection;
-
-import static state.algorithm.MeasurementUtil.sumX;
-import static state.algorithm.MeasurementUtil.sumY;
 
 
 public class SummingStrategy implements IAggregationStrategy {
 
 	@Override
 	public Measurement aggregate(Collection<Measurement> measurements) {
-		return new Measurement(sumX(measurements), sumY(measurements));
+		return new Measurement(MeasurementUtil.sumX(measurements), MeasurementUtil.sumY(measurements));
 	}
 }

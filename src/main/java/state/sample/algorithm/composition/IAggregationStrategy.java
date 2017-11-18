@@ -1,6 +1,6 @@
-package state.algorithm.composition;
+package state.sample.algorithm.composition;
 
-import state.algorithm.Measurement;
+import state.sample.algorithm.Measurement;
 
 import java.util.Collection;
 

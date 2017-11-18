@@ -1,11 +1,11 @@
-﻿package state.algorithm.inheritance;
+﻿package state.sample.algorithm.inheritance;
 
 import org.junit.Before;
 import org.junit.Test;
-import state.algorithm.Measurement;
-import state.algorithm.inhereitance.AveragingAggregator;
-import state.algorithm.inhereitance.LowPassAveragingAggregator;
-import state.algorithm.inhereitance.SummingAggregator;
+import state.sample.algorithm.Measurement;
+import state.sample.algorithm.inhereitance.AveragingAggregator;
+import state.sample.algorithm.inhereitance.LowPassAveragingAggregator;
+import state.sample.algorithm.inhereitance.SummingAggregator;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,11 +1,9 @@
-package state.algorithm.inhereitance;
+package state.sample.algorithm.inhereitance;
 
-import state.algorithm.Measurement;
+import state.sample.algorithm.Measurement;
+import state.sample.algorithm.MeasurementUtil;
 
 import java.util.Collection;
-
-import static state.algorithm.MeasurementUtil.sumX;
-import static state.algorithm.MeasurementUtil.sumY;
 
 
 public class SummingAggregator extends PointsAggregator {
@@ -21,6 +19,6 @@ public class SummingAggregator extends PointsAggregator {
 
 	@Override
 	protected Measurement aggregateMeasurements() {
-		return new Measurement(sumX(measurements), sumY(measurements));
+		return new Measurement(MeasurementUtil.sumX(measurements), MeasurementUtil.sumY(measurements));
 	}
 }

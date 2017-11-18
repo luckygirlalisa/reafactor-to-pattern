@@ -1,4 +1,4 @@
-package state.algorithm;
+package state.sample.algorithm;
 
 import java.util.ArrayList;
 import java.util.Collection;

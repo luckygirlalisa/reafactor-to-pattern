@@ -1,7 +1,7 @@
-package state.algorithm.inhereitance;
+package state.sample.algorithm.inhereitance;
 
-import state.algorithm.Measurement;
-import state.algorithm.MeasurementUtil;
+import state.sample.algorithm.Measurement;
+import state.sample.algorithm.MeasurementUtil;
 
 import java.util.Collection;
 

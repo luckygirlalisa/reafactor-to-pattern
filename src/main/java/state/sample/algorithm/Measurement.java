@@ -1,4 +1,4 @@
-package state.algorithm;
+package state.sample.algorithm;
 public class Measurement {
 
 	private int x;

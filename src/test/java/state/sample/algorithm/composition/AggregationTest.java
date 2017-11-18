@@ -1,4 +1,4 @@
-package state.algorithm.composition;
+package state.sample.algorithm.composition;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,7 +7,7 @@ import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
-import state.algorithm.Measurement;
+import state.sample.algorithm.Measurement;
 
 
 public class AggregationTest {

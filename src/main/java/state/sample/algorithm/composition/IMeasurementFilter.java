@@ -1,5 +1,5 @@
-package state.algorithm.composition;
-import state.algorithm.Measurement;
+package state.sample.algorithm.composition;
+import state.sample.algorithm.Measurement;
 
 import java.util.Collection;
 
