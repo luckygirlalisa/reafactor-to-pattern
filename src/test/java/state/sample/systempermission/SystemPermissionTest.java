@@ -18,76 +18,76 @@ public class SystemPermissionTest {
 
     @Test
     public void shouldHaveRequestedAsInitialState() throws Exception {
-        assertEquals("requested", permission.REQUESTED, permission.getState());
+        assertEquals("requested", PermissionState.REQUESTED, permission.getState());
     }
 
     @Test
     public void shouldNotChangeStateToGrantedAfterRequested() throws Exception {
         SystemAdmin admin = new SystemAdmin();
-        permission.grantedBy(admin);
+        permission.state.grantedBy(admin, permission);
 
-        assertEquals("requested", permission.REQUESTED, permission.getState());
+        assertEquals("requested", PermissionState.REQUESTED, permission.getState());
         assertFalse(permission.isGranted());
     }
 
     @Test
     public void shouldChangeStateToGrantedOnlyAfterClaimed() throws Exception {
         SystemAdmin admin = new SystemAdmin();
-        permission.claimedBy(admin);
-        permission.grantedBy(admin);
+        permission.state.claimedBy(admin, permission);
+        permission.state.grantedBy(admin, permission);
 
-        assertEquals("granted", permission.GRANTED, permission.getState());
+        assertEquals("granted", PermissionState.GRANTED, permission.getState());
         assertTrue(permission.isGranted());
     }
 
     @Test
     public void shouldNotChangeStateToGrantedWhenItemIsNotHandledByAdminWhoClaimIt() throws Exception {
         SystemAdmin claimAdmin = new SystemAdmin();
-        permission.claimedBy(claimAdmin);
+        permission.state.claimedBy(claimAdmin, permission);
         SystemAdmin anotherAdmin = new SystemAdmin();
-        permission.grantedBy(anotherAdmin);
+        permission.state.grantedBy(anotherAdmin, permission);
 
-        assertEquals("claimed", permission.CLAIMED, permission.getState());
+        assertEquals("claimed", PermissionState.CLAIMED, permission.getState());
         assertFalse(permission.isGranted());
     }
 
     @Test
     public void shouldNotChangeStateToDeniedAfterRequested() throws Exception {
         SystemAdmin admin = new SystemAdmin();
-        permission.deniedBy(admin);
+        permission.state.deniedBy(admin, permission);
 
-        assertEquals("requested", permission.REQUESTED, permission.getState());
+        assertEquals("requested", PermissionState.REQUESTED, permission.getState());
         assertFalse(permission.isGranted());
     }
 
     @Test
     public void shouldNotChangeStateToDeniedWhenNotDeniedByClaimedAdmin() throws Exception {
         SystemAdmin claimedAdmin = new SystemAdmin();
-        permission.claimedBy(claimedAdmin);
+        permission.state.claimedBy(claimedAdmin, permission);
         SystemAdmin anotherAdmin = new SystemAdmin();
-        permission.deniedBy(anotherAdmin);
+        permission.state.deniedBy(anotherAdmin, permission);
 
-        assertEquals("claimed", permission.CLAIMED, permission.getState());
+        assertEquals("claimed", PermissionState.CLAIMED, permission.getState());
         assertFalse(permission.isGranted());
     }
 
     @Test
     public void shouldChangeStateToDeniedAfterClaimed() throws Exception {
         SystemAdmin admin = new SystemAdmin();
-        permission.claimedBy(admin);
-        permission.deniedBy(admin);
+        permission.state.claimedBy(admin, permission);
+        permission.state.deniedBy(admin, permission);
 
-        assertEquals("denied", permission.DENIED, permission.getState());
+        assertEquals("denied", PermissionState.DENIED, permission.getState());
         assertFalse(permission.isGranted());
     }
 
     @Test
     public void shouldNotBeAllBeClaimedAfterBeGranted() throws Exception {
         SystemAdmin admin = new SystemAdmin();
-        permission.claimedBy(admin);
-        permission.claimedBy(admin);
+        permission.state.claimedBy(admin, permission);
+        permission.state.claimedBy(admin, permission);
 
-        assertEquals("denied", permission.CLAIMED, permission.getState());
+        assertEquals("denied", PermissionState.CLAIMED, permission.getState());
         assertFalse(permission.isGranted());
     }
 
@@ -99,15 +99,15 @@ public class SystemPermissionTest {
         permission = new SystemPermission(user, profile);
         SystemAdmin admin = new SystemAdmin();
 
-        permission.claimedBy(admin);
-        permission.grantedBy(admin);
-        assertEquals("Unix requested", permission.UNIX_REQUESTED, permission.getState());
+        permission.state.claimedBy(admin, permission);
+        permission.state.grantedBy(admin, permission);
+        assertEquals("Unix requested", PermissionState.UNIX_REQUESTED, permission.getState());
         assertFalse(permission.isGranted());
 
-        permission.claimedBy(admin);
-        assertEquals("Unix claimed", permission.UNIX_CLAIMED, permission.getState());
+        permission.state.claimedBy(admin, permission);
+        assertEquals("Unix claimed", PermissionState.UNIX_CLAIMED, permission.getState());
 
-        permission.grantedBy(admin);
-        assertEquals("Granted", permission.GRANTED, permission.getState());
+        permission.state.grantedBy(admin, permission);
+        assertEquals("Granted", PermissionState.GRANTED, permission.getState());
     }
 }
