@@ -1,4 +1,4 @@
-package state.sample.martinfowler;
+package state.sample.rentmovie;
 class Rental extends DomainObject
 {
     public int daysRented() {

@@ -1,4 +1,4 @@
-package state.sample.martinfowler;
+package state.sample.rentmovie;
 
 import java.util.HashMap;
 import java.util.List;

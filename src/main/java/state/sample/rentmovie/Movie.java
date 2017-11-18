@@ -1,4 +1,4 @@
-package state.sample.martinfowler;
+package state.sample.rentmovie;
 
 public class Movie extends DomainObject {
     public static final int CHILDRENS = 2;
