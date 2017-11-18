@@ -1,4 +1,4 @@
-package state.sample.algorithm.inhereitance;
+package state.sample.algorithm.inheritance;
 
 /// <summary>
 /// Should filter out measurements with an X or Y that are less than or equal to 2

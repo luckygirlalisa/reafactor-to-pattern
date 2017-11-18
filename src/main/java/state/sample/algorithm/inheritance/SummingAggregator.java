@@ -1,5 +1,4 @@
-package state.sample.algorithm.inhereitance;
-
+package state.sample.algorithm.inheritance;
 
 import state.sample.algorithm.Measurement;
 import state.sample.algorithm.MeasurementUtil;
@@ -7,9 +6,9 @@ import state.sample.algorithm.MeasurementUtil;
 import java.util.Collection;
 
 
-public class AveragingAggregator extends PointsAggregator {
+public class SummingAggregator extends state.sample.algorithm.inheritance.PointsAggregator {
 
-	public AveragingAggregator(Collection<Measurement> measurements) {
+	public SummingAggregator(Collection<Measurement> measurements) {
 		super(measurements);
 	}
 
@@ -20,7 +19,6 @@ public class AveragingAggregator extends PointsAggregator {
 
 	@Override
 	protected Measurement aggregateMeasurements() {
-		return new Measurement(MeasurementUtil.averageX(measurements), MeasurementUtil.averageY(measurements));
-
+		return new Measurement(MeasurementUtil.sumX(measurements), MeasurementUtil.sumY(measurements));
 	}
 }

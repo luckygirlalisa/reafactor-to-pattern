@@ -1,5 +1,6 @@
 package state.sample.systempermission;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,6 +8,7 @@ import static org.junit.Assert.*;
 public class SystemPermissionTest {
     private SystemPermission permission;
 
+    @Before
     public void setUp() {
         SystemUser user = new SystemUser();
         SystemProfile profile = new SystemProfile();

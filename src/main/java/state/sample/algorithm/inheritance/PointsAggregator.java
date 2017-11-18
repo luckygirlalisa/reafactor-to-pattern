@@ -1,4 +1,4 @@
-package state.sample.algorithm.inhereitance;
+package state.sample.algorithm.inheritance;
 
 import state.sample.algorithm.Measurement;
 
