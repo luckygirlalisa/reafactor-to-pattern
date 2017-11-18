@@ -1,4 +1,4 @@
-package state;
+package state.sample.systempermission;
 
 public class SystemPermission {
     private SystemProfile profile;

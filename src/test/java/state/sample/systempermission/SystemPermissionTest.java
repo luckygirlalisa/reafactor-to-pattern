@@ -1,4 +1,4 @@
-package state;
+package state.sample.systempermission;
 
 import org.junit.Test;
 
