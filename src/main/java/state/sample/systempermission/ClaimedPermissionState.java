@@ -3,8 +3,15 @@ package state.sample.systempermission;
 public class ClaimedPermissionState extends PermissionState {
     public final static PermissionState CLAIMED = new ClaimedPermissionState("CLAIMED");
 
+    DenyHelper denyHelper;
+
     public ClaimedPermissionState(String claimed) {
         super(claimed);
+        setDenyHelper(new DenyHelper());
+    }
+
+    public void setDenyHelper(DenyHelper denyHelper) {
+        this.denyHelper = denyHelper;
     }
 
 
@@ -25,11 +32,6 @@ public class ClaimedPermissionState extends PermissionState {
 
     @Override
     public void deniedBy(SystemAdmin admin, SystemPermission systemPermission) {
-        if (!systemPermission.admin.equals(admin))
-            return;
-        systemPermission.granted = false;
-        systemPermission.isUnixPermissionGranted = false;
-        systemPermission.setState(DeniedPermissionState.DENIED);
-        systemPermission.notifyUserOfPermissionRequestResult();
+        denyHelper.denyBy(admin, systemPermission);
     }
 }
