@@ -2,11 +2,8 @@ package state.sample.systempermission;
 
 public abstract class PermissionState {
 
-    private String state;
+    public PermissionState() {
 
-    public PermissionState(String state) {
-
-        this.state = state;
     }
 
     public void deniedBy(SystemAdmin admin, SystemPermission systemPermission) {

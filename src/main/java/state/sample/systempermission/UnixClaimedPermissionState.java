@@ -1,7 +1,7 @@
 package state.sample.systempermission;
 
 public class UnixClaimedPermissionState extends PermissionState {
-    public static final PermissionState UNIX_CLAIMED = new UnixClaimedPermissionState("UNIX_CLAIMED");
+    public static final PermissionState UNIX_CLAIMED = new UnixClaimedPermissionState();
 
     public void setDenyHelper(DenyHelper denyHelper) {
         this.denyHelper = denyHelper;
@@ -9,8 +9,8 @@ public class UnixClaimedPermissionState extends PermissionState {
 
     DenyHelper denyHelper;
 
-    public UnixClaimedPermissionState(String unix_claimed) {
-        super(unix_claimed);
+    public UnixClaimedPermissionState() {
+        super();
         setDenyHelper(new DenyHelper());
     }
 

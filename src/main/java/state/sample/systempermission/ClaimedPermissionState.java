@@ -1,12 +1,12 @@
 package state.sample.systempermission;
 
 public class ClaimedPermissionState extends PermissionState {
-    public final static PermissionState CLAIMED = new ClaimedPermissionState("CLAIMED");
+    public final static PermissionState CLAIMED = new ClaimedPermissionState();
 
     DenyHelper denyHelper;
 
-    public ClaimedPermissionState(String claimed) {
-        super(claimed);
+    public ClaimedPermissionState() {
+        super();
         setDenyHelper(new DenyHelper());
     }
 
