@@ -4,10 +4,12 @@ public class SystemPermission {
     private SystemProfile profile;
     private SystemUser requestor;
     private SystemAdmin admin;
-    private boolean isGranted;
-    private String state;
 
+    private boolean granted;
+
+    private String state;
     public final static String REQUESTED = "REQUESTED";
+
     public final static String CLAIMED = "CLAIMED";
     public final static String GRANTED = "GRANTED";
     public final static String DENIED = "DENIED";
@@ -16,7 +18,7 @@ public class SystemPermission {
         this.requestor = requestor;
         this.profile = profile;
         state = REQUESTED;
-        isGranted = false;
+        granted = false;
         notifyAdminOfPermissionRequest();
     }
 
@@ -33,6 +35,7 @@ public class SystemPermission {
     }
 
     private void willBeHandledBy(SystemAdmin admin) {
+        this.admin = admin;
     }
 
     public void deniedBy(SystemAdmin admin) {
@@ -42,7 +45,7 @@ public class SystemPermission {
         if (!this.admin.equals(admin)) {
             return;
         }
-        isGranted = false;
+        granted = false;
         state = DENIED;
         notifyAdminOfPermissionRequest();
     }
@@ -55,11 +58,15 @@ public class SystemPermission {
             return;
         }
         state = GRANTED;
-        isGranted = true;
+        granted = true;
         notifyAdminOfPermissionRequest();
     }
 
     public String state() {
         return state;
+    }
+
+    public boolean isGranted() {
+        return granted;
     }
 }
