@@ -27,7 +27,6 @@ public class UnixClaimedPermissionState extends PermissionState {
             return;
         }
         systemPermission.setState(GrantedPermissionState.GRANTED);
-        systemPermission.granted = true;
         systemPermission.notifyUserOfPermissionRequestResult();
     }
 

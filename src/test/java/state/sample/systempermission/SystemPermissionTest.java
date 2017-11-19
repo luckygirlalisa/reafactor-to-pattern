@@ -11,8 +11,7 @@ public class SystemPermissionTest {
     @Before
     public void setUp() {
         SystemUser user = new SystemUser();
-        boolean isUnixPermissionRequired = false;
-        SystemProfile profile = new SystemProfile(isUnixPermissionRequired);
+        SystemProfile profile = new SystemProfile();
         permission = new SystemPermission(user, profile);
     }
 
@@ -106,8 +105,10 @@ public class SystemPermissionTest {
 
         permission.state.claimedBy(admin, permission);
         assertEquals("Unix claimed", UnixClaimedPermissionState.UNIX_CLAIMED, permission.getState());
+        assertFalse(permission.isGranted());
 
         permission.state.grantedBy(admin, permission);
         assertEquals("Granted", GrantedPermissionState.GRANTED, permission.getState());
+        assertTrue(permission.isGranted());
     }
 }

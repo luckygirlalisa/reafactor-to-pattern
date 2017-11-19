@@ -12,7 +12,6 @@ public class SystemPermission {
         this.requestor = requestor;
         this.profile = profile;
         setState(RequestedPermissionState.REQUESTED);
-        granted = false;
         notifyAdminOfPermissionRequest();
     }
 
@@ -37,7 +36,7 @@ public class SystemPermission {
     }
 
     public boolean isGranted() {
-        return this.granted;
+        return getState().equals(GrantedPermissionState.GRANTED);
     }
 
     public void setState(PermissionState state) {
