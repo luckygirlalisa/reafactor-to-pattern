@@ -100,6 +100,7 @@ public class SystemPermissionTest {
 
         permission.state.claimedBy(admin, permission);
         permission.state.grantedBy(admin, permission);
+        assertFalse(permission.isGranted());
         assertEquals("Unix requested", UnixRequestedPermissionState.UNIX_REQUESTED, permission.getState());
         assertFalse(permission.isGranted());
 
@@ -110,5 +111,39 @@ public class SystemPermissionTest {
         permission.state.grantedBy(admin, permission);
         assertEquals("Granted", GrantedPermissionState.GRANTED, permission.getState());
         assertTrue(permission.isGranted());
+    }
+
+    @Test
+    public void shouldBeDeniedAfterSystemRequestDeniedWithUnixRequestNeeded() throws Exception {
+        SystemUser user = new SystemUser();
+        boolean isUnixPermissionRequired = true;
+        SystemProfile profile = new SystemProfile(isUnixPermissionRequired);
+        permission = new SystemPermission(user, profile);
+        SystemAdmin admin = new SystemAdmin();
+
+        permission.state.claimedBy(admin, permission);
+        permission.state.deniedBy(admin, permission);
+        assertEquals("Denied", DeniedPermissionState.DENIED, permission.getState());
+        assertFalse(permission.isGranted());
+    }
+
+    @Test
+    public void shouldBeDeniedAfterUnixRequestDeniedWithUnixRequestNeeded() throws Exception {
+        SystemUser user = new SystemUser();
+        boolean isUnixPermissionRequired = true;
+        SystemProfile profile = new SystemProfile(isUnixPermissionRequired);
+        permission = new SystemPermission(user, profile);
+        SystemAdmin admin = new SystemAdmin();
+
+        permission.state.claimedBy(admin, permission);
+        assertEquals("Claimed", ClaimedPermissionState.CLAIMED, permission.getState());
+        permission.state.grantedBy(admin, permission);
+        assertEquals("Unix Requested", UnixRequestedPermissionState.UNIX_REQUESTED, permission.getState());
+        assertFalse(permission.isGranted());
+
+        permission.state.claimedBy(admin, permission);
+        permission.state.deniedBy(admin, permission);
+        assertEquals("Denied", DeniedPermissionState.DENIED, permission.getState());
+        assertFalse(permission.isGranted());
     }
 }
