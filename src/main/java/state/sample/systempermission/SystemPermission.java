@@ -6,7 +6,7 @@ public class SystemPermission {
     SystemAdmin admin;
     boolean granted;
     boolean isUnixPermissionGranted;
-    PermissionState state;
+    private PermissionState state;
 
     public SystemPermission(SystemUser requestor, SystemProfile profile) {
         this.requestor = requestor;
